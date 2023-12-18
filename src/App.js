@@ -2,22 +2,20 @@ import './App.css';
 import Employee from './components/Employee';
 
 function App() {
-  console.log("We are about to list the employees");
   const showEmployees = true;
   return (
     <div className="App">
-      {console.log("inside the return")}
+
       {showEmployees ? (
       <>
-          <Employee/>
-          <Employee/>
-          <Employee/>
-          <Employee/>
-          <Employee/>
+          <Employee name="Hashim" role="Intern"/>
+          <Employee name="Abby"/>
+          <Employee name="John"/>
       </>
       ) : (
         <p>You cannot see the employees</p>
       )}
+      
     </div>
   );
 }
