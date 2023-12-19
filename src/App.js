@@ -6,7 +6,7 @@ function App() {
   const [role, setRole] = useState("dev");
   const showEmployees = true;
   return (
-    <div className="App bg-red-300">
+    <div className="App">
 
       {showEmployees ? (
       <>
@@ -15,9 +15,17 @@ function App() {
         setRole(e.target.value);
       }}
       />
-          <Employee name="Hashim" role="Intern"/>
-          <Employee name="Abby" role={role}/>
-          <Employee name="John"/>
+      <div className='flex flex-wrap justify-center'>
+          <Employee name="Hashim" role="Intern" img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+          <Employee name="Abby" role={role} img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+          <Employee name="John" img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>          
+          <Employee name="Hashim" role="Intern" img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+          <Employee name="Abby" role={role} img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+          <Employee name="John" img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>  
+          <Employee name="Hashim" role="Intern" img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+          <Employee name="Abby" role={role} img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>
+          <Employee name="John" img="https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"/>  
+      </div>
       </>
       ) : (
         <p>You cannot see the employees</p>
