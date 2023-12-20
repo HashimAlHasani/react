@@ -18,8 +18,8 @@ function App() {
         img: "https://images.pexels.com/photos/19564637/pexels-photo-19564637/free-photo-of-levi.jpeg",
       },
       {
-        name: "Eren Yaeger", 
-        role: "Commander", 
+        name: "Eren Jaeger", 
+        role: "Survey Corps", 
         img: "https://images.pexels.com/photos/19564649/pexels-photo-19564649.jpeg",
       },
       {
@@ -34,7 +34,7 @@ function App() {
       },
       {
         name: "Hange  Zoë", 
-        role: "Survey Corps", 
+        role: "Commander", 
         img: "https://images.pexels.com/photos/19564675/pexels-photo-19564675/free-photo-of-hange.jpeg",
       },
     ]
