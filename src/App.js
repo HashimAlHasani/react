@@ -4,41 +4,58 @@ import { useState } from 'react';
 import {v4 as uuidv4} from 'uuid';
 
 function App() {
-  const [role, setRole] = useState("dev");
+  const [role, setRole] = useState("No Role");
   const [employees, setEmployees] = useState(
     [
       {
+        id: 1,
         name: "Erwin Smith", 
         role: "Commander", 
         img: "https://images.pexels.com/photos/19554075/pexels-photo-19554075.jpeg",
       },
       {
+        id: 2,
         name: "Levi Ackerman", 
         role: "Commander", 
         img: "https://images.pexels.com/photos/19564637/pexels-photo-19564637/free-photo-of-levi.jpeg",
       },
       {
+        id: 3,
         name: "Eren Jaeger", 
         role: "Survey Corps", 
         img: "https://images.pexels.com/photos/19564649/pexels-photo-19564649.jpeg",
       },
       {
+        id: 4,
         name: "Mikasa Ackerman", 
         role: "Survey Corps", 
         img: "https://images.pexels.com/photos/19564661/pexels-photo-19564661/free-photo-of-mikasa.jpeg",
       },
       {
+        id: 5,
         name: "Armin Arlert", 
         role: "Survey Corps", 
         img: "https://images.pexels.com/photos/19564668/pexels-photo-19564668/free-photo-of-armin.jpeg",
       },
       {
+        id: 6,
         name: "Hange  Zoë", 
         role: "Commander", 
         img: "https://images.pexels.com/photos/19564675/pexels-photo-19564675/free-photo-of-hange.jpeg",
       },
     ]
   );
+
+  function updateEmployee(id, newName, newRole){
+    const updatedEmployees = employees.map((employee) => {
+      if(id == employee.id){
+        return {...employee, name: newName, role: newRole};
+      }
+
+      return employee;
+    });
+    setEmployees(updatedEmployees);
+  }
 
   const showEmployees = true;
   return (
@@ -47,7 +64,6 @@ function App() {
       {showEmployees ? (
       <>
       <input type="text" onChange={(e) => {
-        console.log(e.target.value);
         setRole(e.target.value);
       }}
       />
@@ -55,10 +71,12 @@ function App() {
           {employees.map((employee) => {
             return (
               <Employee 
-              key={uuidv4()}
+              key={employee.id}
+              id={employee.id}
               name={employee.name} 
               role={employee.role} 
               img={employee.img}
+              updateEmployee={updateEmployee}
               />
             );
           })}
