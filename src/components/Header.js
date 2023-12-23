@@ -3,8 +3,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
+  { name: 'Employees', href: '/Employees', current: true },
+  { name: 'Customers', href: '/Customers', current: false },
   { name: 'Projects', href: '#', current: false },
   { name: 'Calendar', href: '#', current: false },
 ]
@@ -135,6 +135,7 @@ export default function Header(props) {
             </div>
           </Disclosure.Panel>
           {props.children}
+          <footer className='text-white'>Example</footer>
         </>
       )}
     </Disclosure>
