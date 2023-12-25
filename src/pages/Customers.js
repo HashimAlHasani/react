@@ -1,3 +1,3 @@
 export default function Customers(){
-    return <h1 className="text-white">Hello There!</h1>;
+    return <h1>Hello There!</h1>;
 }
