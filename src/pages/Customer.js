@@ -10,6 +10,7 @@ export default function Customer() {
   const [tempCustomer, setTempCustomer] = useState();
   const [notFound, setNotFound] = useState();
   const [changed, setChanged] = useState(false);
+  const [error, setError] = useState();
 
   useEffect(() => {
     if (!customer) return;
@@ -30,11 +31,18 @@ export default function Customer() {
           //render a 404 component in this page
           setNotFound(true);
         }
+        if (!response.ok) {
+          throw new Error("Something went wrong, try again later");
+        }
         return response.json();
       })
       .then((data) => {
         setCustomer(data.customer);
         setTempCustomer(data.customer);
+        setError(undefined);
+      })
+      .catch((e) => {
+        setError(e.message);
       });
   }, []);
 
@@ -46,13 +54,17 @@ export default function Customer() {
       body: JSON.stringify(tempCustomer),
     })
       .then((response) => {
+        if (!response.ok) throw new Error("Something went wrong");
         return response.json();
       })
       .then((data) => {
         setCustomer(data.customer);
         setChanged(false);
+        setError(undefined);
       })
-      .catch();
+      .catch((e) => {
+        setError(e.message);
+      });
   }
 
   return (
@@ -108,15 +120,17 @@ export default function Customer() {
                   if (!response.ok) {
                     throw new Error("Something went wrong");
                   }
+                  setError(undefined);
                   navigate("/customers");
                 })
-                .catch((e) => console.log(e));
+                .catch((e) => setError(e.message));
             }}
           >
             Delete
           </button>
         </div>
       ) : null}
+      {error ? <p>{error}</p> : null}
       <br />
       <Link to="/customers">Go Back</Link>
     </>
