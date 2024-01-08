@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import NotFound from "../components/NotFound";
 import { baseUrl } from "../shared";
 
 export default function Customer() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [customer, setCustomer] = useState();
   const [tempCustomer, setTempCustomer] = useState();
   const [notFound, setNotFound] = useState();
   const [changed, setChanged] = useState(false);
   const [error, setError] = useState();
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!customer) return;
@@ -36,7 +38,11 @@ export default function Customer() {
           //render a 404 component in this page
           setNotFound(true);
         } else if (response.status === 401) {
-          navigate("/login");
+          navigate("/login", {
+            state: {
+              previousUrl: location.pathname,
+            },
+          });
         }
         if (!response.ok) {
           throw new Error("Something went wrong, try again later");
@@ -66,7 +72,11 @@ export default function Customer() {
     })
       .then((response) => {
         if (response.status === 401) {
-          navigate("/login");
+          navigate("/login", {
+            state: {
+              previousUrl: location.pathname,
+            },
+          });
         }
         if (!response.ok) throw new Error("Something went wrong");
         return response.json();
@@ -164,7 +174,11 @@ export default function Customer() {
                 })
                   .then((response) => {
                     if (response.status === 401) {
-                      navigate("/login");
+                      navigate("/login", {
+                        state: {
+                          previousUrl: location.pathname,
+                        },
+                      });
                     }
                     if (!response.ok) {
                       throw new Error("Something went wrong");

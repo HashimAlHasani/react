@@ -20,8 +20,6 @@ export default function Definition() {
         //console.log(response.status);
         if (response.status === 404) {
           setNotFound(true);
-        } else if (response.status === 401) {
-          navigate("/login");
         } else if (response.status === 500) {
           setError(true);
         }
