@@ -2,8 +2,8 @@ import { useState } from "react";
 import { baseUrl } from "../shared";
 
 export default function Login() {
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   function login(e) {
     e.preventDefault();
@@ -24,7 +24,9 @@ export default function Login() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        localStorage.setItem("access", data.access);
+        localStorage.setItem("refresh", data.refresh);
+        console.log(localStorage);
       });
   }
 
@@ -32,7 +34,7 @@ export default function Login() {
     <form className="m-2 w-full max-w-sm" id="customer" onSubmit={login}>
       <div className="md:flex md:items-center mb-6">
         <div className="md:w-1/4">
-          <label for="Username">Username</label>
+          <label htmlFor="username">Username</label>
         </div>
         <div className="md:w-3/4">
           <input
@@ -48,7 +50,7 @@ export default function Login() {
       </div>
       <div className="md:flex md:items-center mb-6">
         <div className="md:w-1/4">
-          <label for="password">Password</label>
+          <label htmlFor="password">Password</label>
         </div>
         <div className="md:w-3/4">
           <input
