@@ -10,6 +10,7 @@ import Definition from "./pages/Definition";
 import NotFound from "./components/NotFound";
 import Login from "./pages/Login";
 import { baseUrl } from "./shared";
+import Register from "./pages/Register";
 
 export const LoginContext = createContext();
 
@@ -63,6 +64,7 @@ export default function App() {
             <Route path="/dictionary" element={<Dictionary />} />
             <Route path="/definition/:search" element={<Definition />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/404" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
