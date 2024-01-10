@@ -3,11 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 import NotFound from "../components/NotFound";
 import DefinitionSearch from "../components/DefinitionSearch";
 import useFetch from "../hooks/UseFetch";
+import { useEffect } from "react";
 
 export default function Definition() {
   let { search } = useParams();
 
-  const [word, errorStatus] = useFetch(
+  const { data: [{ meanings: word }] = [{}], errorStatus } = useFetch(
     "https://api.dictionaryapi.dev/api/v2/entries/en/" + search
   );
 
@@ -31,10 +32,10 @@ export default function Definition() {
 
   return (
     <>
-      {word?.[0]?.meanings ? (
+      {word ? (
         <>
           <h1>Here is a definition:</h1>
-          {word[0].meanings.map((meaning) => {
+          {word.map((meaning) => {
             return (
               <p key={uuidv4()}>
                 {meaning.partOfSpeech + ": "}
